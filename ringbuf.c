@@ -1,20 +1,20 @@
 /* Wrap the index using a bit mask instead of the modulo (%) operator.
- *
+ 
  * On many microcontrollers, a bitwise AND operation can be executed in a
- * single CPU instruction, whereas modulo may require a division operation.
+   single CPU instruction, whereas modulo may require a division operation.
  * MCUs without a hardware divider often perform division in software,
- * making modulo significantly more expensive in terms of CPU cycles.
+   making modulo significantly more expensive in terms of CPU cycles.
  * So the Bitwise AND operation is used instead of Modulo operator because
- * it uses minimum CPU cycles
+   it uses minimum CPU cycles
  * This optimization is only valid when BUFFER_SIZE is a power of 2
- * (e.g., 8, 16, 32, 64). In such cases:
- *
+   (e.g., 8, 16, 32, 64). In such cases:
+  
  *      index % BUFFER_SIZE
- *
+  
  * is equivalent to:
- *
+  
  *      index & (BUFFER_SIZE - 1)
- *
+  
  * allowing efficient wraparound of the ring buffer index.
  */
 
